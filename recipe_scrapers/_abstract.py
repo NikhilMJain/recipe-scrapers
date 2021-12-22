@@ -27,7 +27,7 @@ class AbstractScraper:
         ] = None,  # allows us to specify optional timeout for request
         wild_mode: Optional[bool] = False,
     ):
-        self.page_date = content
+        self.page_data = content
 
         self.wild_mode = wild_mode
         self.soup = BeautifulSoup(self.page_data, "html.parser")
