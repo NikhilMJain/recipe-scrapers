@@ -44,5 +44,5 @@ class SchemaScraperFactory:
             return self.schema.cuisine()
 
     @classmethod
-    def generate(cls, url, **options):
-        return cls.SchemaScraper(url, **options)
+    def generate(cls, url, content, **options):
+        return cls.SchemaScraper(url, content, **options)

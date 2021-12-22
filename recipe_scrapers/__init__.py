@@ -354,7 +354,7 @@ SCRAPERS = {
 }
 
 
-def scrape_me(url_path, **options):
+def scrape_me(url_path, content, **options):
     host_name = get_host_name(url_path)
 
     try:
@@ -364,12 +364,12 @@ def scrape_me(url_path, **options):
             raise WebsiteNotImplementedError(host_name)
         else:
             options.pop("wild_mode")
-            wild_scraper = SchemaScraperFactory.generate(url_path, **options)
+            wild_scraper = SchemaScraperFactory.generate(url_path, content, **options)
             if not wild_scraper.schema.data:
                 raise NoSchemaFoundInWildMode(url_path)
             return wild_scraper
 
-    return scraper(url_path, **options)
+    return scraper(url_path, content, **options)
 
 
 __all__ = ["scrape_me"]

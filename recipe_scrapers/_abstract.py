@@ -20,19 +20,14 @@ class AbstractScraper:
     def __init__(
         self,
         url,
+        content,
         proxies: Optional[str] = None,  # allows us to specify optional proxy server
         timeout: Optional[
             Union[float, Tuple, None]
         ] = None,  # allows us to specify optional timeout for request
         wild_mode: Optional[bool] = False,
     ):
-        if settings.TEST_MODE:  # when testing, we load a file
-            self.page_data = url.read()
-            url = "https://test.example.com/"
-        else:
-            self.page_data = requests.get(
-                url, headers=HEADERS, proxies=proxies, timeout=timeout
-            ).content
+        self.page_date = content
 
         self.wild_mode = wild_mode
         self.soup = BeautifulSoup(self.page_data, "html.parser")
