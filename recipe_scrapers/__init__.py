@@ -377,7 +377,14 @@ def scrape_me(url_path, content, **options):
 
 def scrape_me_enhanced(url_path, content, **options):
     try:
-        return scrape_me(url_path, content, **options)
+        scraper = scrape_me(url_path, content, **options)
+        scraper.get_host()
+        scraper.instructions()
+        scraper.ingredients()
+        scraper.image()
+        scraper.yields()
+        scraper.total_time()
+        return scraper
     except NoSchemaFoundInWildMode:
         raise
     except Exception:
