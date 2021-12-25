@@ -372,5 +372,17 @@ def scrape_me(url_path, content, **options):
     return scraper(url_path, content, **options)
 
 
-__all__ = ["scrape_me"]
+def scrape_me_enhanced(url_path, content, **options):
+    try:
+        return scrape_me(url_path, content, **options)
+    except NoSchemaFoundInWildMode:
+        raise
+    except Exception:
+        wild_scraper = SchemaScraperFactory.generate(url_path, content, **options)
+        if not wild_scraper.schema.data:
+            raise NoSchemaFoundInWildMode(url_path)
+        return wild_scraper
+
+
+__all__ = ["scrape_me", "scrape_me_enhanced"]
 name = "recipe_scrapers"
