@@ -378,7 +378,6 @@ def scrape_me(url_path, content, **options):
 def scrape_me_enhanced(url_path, content, **options):
     try:
         scraper = scrape_me(url_path, content, **options)
-        scraper.get_host()
         scraper.instructions()
         scraper.ingredients()
         scraper.image()
