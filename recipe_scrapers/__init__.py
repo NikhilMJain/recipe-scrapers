@@ -379,7 +379,9 @@ def scrape_me_enhanced(url_path, content, **options):
     try:
         scraper = scrape_me(url_path, content, **options)
         scraper.instructions()
-        scraper.ingredients()
+        ingredients = scraper.ingredients()
+        if ingredients and len(ingredients[0]) == 1:
+            raise Exception()
         scraper.image()
         scraper.yields()
         scraper.total_time()
